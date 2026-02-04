@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Telugu Movie Date? 😚</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:"Poppins",sans-serif;
+  background: radial-gradient(circle at top, #ffe3ea, #ff9a9e);
+  overflow:hidden;
+  position:relative;
+}
+
+/* ---------- BOKEH BACKGROUND ---------- */
+.bokeh{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  overflow:hidden;
+}
+.dot{
+  position:absolute;
+  width:140px;
+  height:140px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.25);
+  filter:blur(2px);
+  animation:drift 10s linear infinite;
+}
+@keyframes drift{
+  0%{transform:translateY(30vh);opacity:0.3;}
+  100%{transform:translateY(-120vh);opacity:0;}
+}
+
+/* ---------- SHARED CARD STYLE ---------- */
+.card{
+  z-index:2;
+  width:min(560px,92vw);
+  padding:45px 35px;
+  border-radius:30px;
+  text-align:center;
+  backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,0.55);
+  box-shadow:0 20px 60px rgba(0,0,0,0.15);
+}
+
+/* Variants */
+.card-ask{ background:rgba(255,255,255,0.62); }
+.card-yes{ background:rgba(30,41,59,0.7); color:white; }
+.card-dare{ background:rgba(107,16,35,0.7); color:white; }
+
+h1{
+  font-family:"Pacifico",cursive;
+  font-size:clamp(2rem,4vw,2.7rem);
+  margin:0 0 15px;
+  color:#b3003c;
+  animation:bounce 1.6s infinite;
+}
+@keyframes bounce{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-10px);}
+}
+
+.subtitle{opacity:0.85;margin-bottom:25px;}
+
+/* ---------- ASK SCREEN BUTTONS ---------- */
+.container{
+  position:relative;
+  width:min(420px,86vw);
+  height:200px;
+  margin:auto;
+}
+
+.btn{
+  position:absolute;
+  padding:14px 28px;
+  font-size:1.1rem;
+  font-weight:600;
+  border:none;
+  border-radius:999px;
+  cursor:pointer;
+  transition:all .25s ease;
+}
+
+#yes{
+  left:40px;top:85px;
+  background:linear-gradient(135deg,#2ecc71,#16a34a);
+  color:white;
+}
+#yes:hover{transform:scale(1.08);}
+
+#no{
+  left:250px;top:85px;
+  background:linear-gradient(135deg,#ff4d6d,#e11d48);
+  color:white;
+}
+
+#noah{display:none;color:#9c0033;font-weight:600;margin-top:15px;}
+.shake{animation:shake .35s ease;}
+@keyframes shake{
+  25%{transform:translateX(-6px);}
+  50%{transform:translateX(6px);}
+  75%{transform:translateX(-6px);}
+}
+
+/* ---------- CONFETTI ---------- */
+.confetti{
+  position:absolute;
+  width:8px;height:8px;
+  animation:fall 1.2s ease-out forwards;
+}
+@keyframes fall{
+  100%{transform:translateY(300px) rotate(720deg);opacity:0;}
+}
+
+/* ---------- BIG YES ANIMATION ---------- */
+.big-yes{
+  display:inline-block;
+  margin-top:18px;
+  padding:18px 38px;
+  font-size:1.35rem;
+  font-weight:800;
+  border:none;
+  border-radius:999px;
+  cursor:pointer;
+  background:linear-gradient(135deg,#2ecc71,#16a34a);
+  color:white;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 15px 35px rgba(22,163,74,0.35);
+  animation:pulse 1.6s infinite ease-in-out;
+}
+
+@keyframes pulse{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.08);}
+  100%{transform:scale(1);}
+}
+
+.big-yes:hover{
+  animation:jiggle .4s ease;
+  box-shadow:0 20px 45px rgba(22,163,74,0.5);
+}
+
+@keyframes jiggle{
+  0%{transform:rotate(0);}
+  25%{transform:rotate(-2deg);}
+  50%{transform:rotate(2deg);}
+  75%{transform:rotate(-2deg);}
+  100%{transform:rotate(0);}
+}
+
+.big-yes::after{
+  content:"";
+  position:absolute;
+  top:0;left:-100%;
+  width:100%;height:100%;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,.6),transparent);
+  animation:shine 2.5s infinite;
+}
+@keyframes shine{
+  0%{left:-100%;}
+  100%{left:100%;}
+}
+
+.pop{animation:pop .5s ease;}
+@keyframes pop{
+  0%{transform:scale(.85);opacity:0;}
+  100%{transform:scale(1);opacity:1;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="bokeh" id="bokeh"></div>
+
+<div class="card card-ask" id="askCard">
+  <h1>Are we going out for a Telugu Moviee ??😚</h1>
+  <p class="subtitle">Choose Smart Fighterr 🫣🥱</p>
+
+  <div class="container" id="box">
+    <button class="btn" id="yes">Yes 💖</button>
+    <button class="btn" id="no">No 💔</button>
+  </div>
+
+  <div id="noah">NOAHHHH 😭</div>
+</div>
+
+<script>
+function buildBokeh(id){
+  const b=document.getElementById(id);
+  if(!b) return;
+  b.innerHTML="";
+  for(let i=0;i<10;i++){
+    const d=document.createElement("div");
+    d.className="dot";
+    d.style.left=Math.random()*100+"vw";
+    d.style.top=Math.random()*100+"vh";
+    d.style.animationDuration=(8+Math.random()*6)+"s";
+    b.appendChild(d);
+  }
+}
+buildBokeh("bokeh");
+
+function confetti(){
+  const colors=["#ff4d6d","#ffd166","#06d6a0","#4d96ff","#f72585"];
+  for(let i=0;i<60;i++){
+    const c=document.createElement("div");
+    c.className="confetti";
+    c.style.left=50+(Math.random()*40-20)+"vw";
+    c.style.top="20vh";
+    c.style.background=colors[Math.floor(Math.random()*colors.length)];
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),1200);
+  }
+}
+
+function goToYes(){
+  confetti();
+  document.body.innerHTML=`
+    <div class="bokeh" id="b2"></div>
+    <div class="card card-yes pop">
+      <h1 style="animation:none;color:#ffd166;">Awww Paradanda 🥺</h1>
+      <p>Such a Cutie 😚</p>
+      <img src="https://media.tenor.com/G4c1ALQ1ZpgAAAAi/biting-ears.gif"
+           style="width:260px;margin:20px auto;display:block;">
+      <p>I’ll book the tickets 😌</p>
+    </div>
+  `;
+  buildBokeh("b2");
+}
+
+function goToDare(){
+  document.body.innerHTML=`
+    <div class="bokeh" id="b3"></div>
+    <div class="card card-dare pop">
+      <h1 style="animation:none;color:#ffccd5;">HOW DARE YOU 😤</h1>
+      <p>Try that again… I’m watching 👀</p>
+      <img src="https://media1.tenor.com/m/uYJuAOyyWDIAAAAC/markplier-punch.gif"
+           style="width:280px;margin:20px auto;display:block;border-radius:18px;">
+      <button class="big-yes" id="bigYes">YES 😌💖</button>
+    </div>
+  `;
+  buildBokeh("b3");
+  document.getElementById("bigYes").addEventListener("click",goToYes);
+}
+
+const safeDistance=160;
+document.addEventListener("mousemove",(e)=>{
+  const noBtn=document.getElementById("no");
+  const box=document.getElementById("box");
+  const noah=document.getElementById("noah");
+  if(!noBtn||!box||!noah) return;
+
+  const rect=noBtn.getBoundingClientRect();
+  const cx=rect.left+rect.width/2;
+  const cy=rect.top+rect.height/2;
+  const dx=e.clientX-cx;
+  const dy=e.clientY-cy;
+  const dist=Math.hypot(dx,dy);
+
+  if(dist<safeDistance){
+    const angle=Math.atan2(dy,dx);
+    const move=110;
+
+    let newLeft=noBtn.offsetLeft-Math.cos(angle)*move;
+    let newTop=noBtn.offsetTop-Math.sin(angle)*move;
+
+    const maxX=box.clientWidth-noBtn.offsetWidth;
+    const maxY=box.clientHeight-noBtn.offsetHeight;
+
+    newLeft=Math.max(0,Math.min(maxX,newLeft));
+    newTop=Math.max(0,Math.min(maxY,newTop));
+
+    noBtn.style.transition="left .25s ease, top .25s ease";
+    noBtn.style.left=newLeft+"px";
+    noBtn.style.top=newTop+"px";
+
+    noah.style.display="block";
+    noah.classList.remove("shake");
+    void noah.offsetWidth;
+    noah.classList.add("shake");
+  }
+});
+
+document.getElementById("yes").addEventListener("click",goToYes);
+document.getElementById("no").addEventListener("click",(e)=>{
+  e.preventDefault();
+  goToDare();
+});
+</script>
+
+</body>
+</html>
